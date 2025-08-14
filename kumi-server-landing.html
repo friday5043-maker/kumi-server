@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>쿠미 서버 | Kumi RO</title>
+  <meta name="description" content="경험치 500배 · 드랍률 300배 · 시작 제니/장비 즉시 지급! 쿠미 서버에서 하루 만에 만렙 찍고 보스사냥 ㄱㄱ" />
+  <meta property="og:title" content="쿠미 서버 | 지금 오픈!" />
+  <meta property="og:description" content="경험치 500배 · 드랍률 300배 · 시작 제니/장비 지급 · 하루 만에 만렙" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://kumi-ro.online/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <style>
+    :root{
+      --bg1:#0b0f1a;
+      --bg2:#151b2f;
+      --acc1:#8bd3ff;
+      --acc2:#85ffa7;
+      --txt:#e9f0ff;
+      --muted:#a6b0c3;
+      --cta:#ffd166;
+      --cta-txt:#0b0f1a;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: system-ui,-apple-system, "Segoe UI", Roboto, "Noto Sans KR", Arial, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+      color:var(--txt);
+      background: radial-gradient(1200px 800px at 20% -10%, #1c2a52 0%, transparent 60%),
+                  radial-gradient(900px 600px at 100% 0%, #1a3b2b 0%, transparent 65%),
+                  linear-gradient(160deg, var(--bg1), var(--bg2) 60%);
+      overflow-x:hidden;
+    }
+    header{
+      position:sticky; top:0; z-index:10;
+      backdrop-filter: blur(8px);
+      background: rgba(10,14,25,.5);
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .nav{
+      max-width:1100px; margin:0 auto; padding:14px 20px;
+      display:flex; align-items:center; justify-content:space-between;
+    }
+    .logo{
+      display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:.5px;
+    }
+    .logo-badge{
+      width:28px;height:28px;border-radius:8px;
+      background: linear-gradient(135deg, var(--acc1), var(--acc2));
+      box-shadow:0 6px 20px rgba(133,255,167,.35), inset 0 0 10px rgba(255,255,255,.4);
+    }
+    .nav a{color:var(--txt); text-decoration:none; margin-left:16px; font-weight:600}
+    .hero{
+      max-width:1100px; margin:0 auto; padding:70px 20px 40px;
+      display:grid; grid-template-columns: 1.2fr .8fr; gap:28px; align-items:center;
+    }
+    @media (max-width:900px){
+      .hero{grid-template-columns:1fr; padding-top:40px}
+    }
+    h1{font-size:clamp(32px, 4.2vw, 54px); line-height:1.05; margin:0 0 12px}
+    .sub{font-size:clamp(16px,2.2vw,20px); color:var(--muted); margin:0 0 26px}
+    .feature-badges{display:flex; flex-wrap:wrap; gap:10px; margin:18px 0 26px}
+    .badge{
+      padding:8px 12px; border-radius:999px; font-size:14px; font-weight:700;
+      background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.12);
+    }
+    .cta-row{display:flex; gap:12px; flex-wrap:wrap}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      font-weight:800; padding:14px 18px; border-radius:12px; text-decoration:none;
+      transition:.2s ease; border:1px solid transparent;
+    }
+    .btn.primary{background:var(--cta); color:var(--cta-txt);}
+    .btn.primary:hover{transform: translateY(-1px); box-shadow:0 8px 26px rgba(255,209,102,.34)}
+    .btn.ghost{border-color:rgba(255,255,255,.22); color:var(--txt); background:rgba(255,255,255,.04)}
+    .btn.ghost:hover{border-color:rgba(255,255,255,.35)}
+    .card{
+      background:rgba(12,16,28,.55);
+      border:1px solid rgba(255,255,255,.06);
+      border-radius:16px;
+      padding:18px;
+      box-shadow: 0 10px 40px rgba(0,0,0,.25);
+    }
+    .grid{max-width:1100px;margin:0 auto;padding:14px 20px 70px;display:grid;gap:18px;
+      grid-template-columns: repeat(3,1fr);
+    }
+    @media (max-width:900px){.grid{grid-template-columns:1fr}}
+    .card h3{margin:6px 0 8px; font-size:20px}
+    .list{margin:0; padding:0 0 0 16px; color:var(--muted); line-height:1.7}
+    .mono{font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Roboto Mono", monospace; font-weight:700}
+    footer{color:var(--muted); text-align:center; padding:30px 20px}
+    .fomo{color:#ffd6a3; font-weight:800}
+    .pill{
+      display:inline-block; padding:6px 10px; border-radius:999px; font-size:12px; font-weight:800;
+      background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.12);
+      margin-left:8px;
+    }
+    .callout{
+      margin-top:16px; font-size:14px; color:var(--muted);
+    }
+    .fake-hero{
+      border:1px dashed rgba(255,255,255,.15);
+      border-radius:16px; padding:18px; font-size:14px; color:var(--muted);
+    }
+    .copy-wrap{display:flex; gap:8px; margin-top:10px}
+    input.link{
+      flex:1; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12);
+      border-radius:8px; padding:12px; color:var(--txt); font-weight:700
+    }
+    .small{font-size:12px; color:var(--muted)}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav">
+      <div class="logo"><span class="logo-badge"></span> KUMI RO</div>
+      <nav>
+        <a href="#start">시작하기</a>
+        <a href="#rates">서버정보</a>
+        <a href="#community">커뮤니티</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div>
+      <h1>쿠미 서버, <span class="mono">지금 오픈</span> 🎉</h1>
+      <p class="sub">🔥 경험치 <b>500배</b> · 드랍률 <b>300배</b> · 시작 제니/장비 <b>즉시 지급</b><br/>
+        하루 만에 만렙 찍고 <b>보스 사냥</b> 달리자!</p>
+      <div class="feature-badges">
+        <span class="badge">노 페이투윈</span>
+        <span class="badge">리뉴얼/프리리뉴얼 선택</span>
+        <span class="badge">커스텀 던전 & 주간 이벤트</span>
+        <span class="badge">초보 무조건 환영</span>
+      </div>
+      <div class="cta-row">
+        <a class="btn primary" href="https://kumi-ro.online/play" target="_blank" rel="noopener">지금 접속하기</a>
+        <a class="btn ghost" href="#start">3초 설치 가이드</a>
+      </div>
+      <div class="callout fomo">첫 주 한정: 레벨업 버프 + 보스카드 드랍률 추가 이벤트!</div>
+    </div>
+    <div class="card fake-hero">
+      <b>낚시용 링크 프리셋</b>
+      <div class="copy-wrap">
+        <input class="link" id="fakeLink" value="https://kumi-ro.online/play" readonly />
+        <a class="btn ghost" id="copyBtn" href="javascript:void(0)">복사</a>
+      </div>
+      <div class="small">* 실제 동작은 배포 환경에 따라 달라질 수 있습니다.</div>
+    </div>
+  </section>
+
+  <section id="rates" class="grid">
+    <div class="card">
+      <h3>서버 핵심</h3>
+      <ul class="list">
+        <li>경험치 <b>x500</b> / 직업경험치 <b>x500</b></li>
+        <li>드랍률 <b>x300</b> / 보스카드 이벤트 <b>상시</b></li>
+        <li>스타트 제니 <b>10,000,000</b> + <b>스타터 풀세트</b> 지급</li>
+        <li>퀘스트/레이드 보상 <b>상향</b>, 생활 편의 <b>대폭 개선</b></li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>편의/밸런스</h3>
+      <ul class="list">
+        <li>워프/창고/수리 등 기본 편의 <b>무료</b></li>
+        <li>클래스 밸런스 <b>지속 패치</b> (커뮤니티 투표 반영)</li>
+        <li>멀티 클라이언트 허용(<span class="small">운영정책 준수</span>)</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>이벤트</h3>
+      <ul class="list">
+        <li>주간 MVP 토벌전 · 주말 레이드</li>
+        <li>첫 접속 7일 출석체크 <b>레어 코스튬</b></li>
+        <li>신규/복귀 유저 <b>파티 매칭</b> 상시 운영</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="start" class="grid">
+    <div class="card">
+      <h3>3초 설치 가이드 <span class="pill">초간단</span></h3>
+      <ol class="list">
+        <li>클라이언트 다운로드</li>
+        <li>계정 등록 & 로그인</li>
+        <li>접속: <b>kumi-ro.online/play</b></li>
+      </ol>
+      <div class="callout">* 위 주소는 예시입니다. 실제 환경에 맞게 교체하세요.</div>
+    </div>
+    <div class="card" id="community">
+      <h3>커뮤니티</h3>
+      <ul class="list">
+        <li>디스코드: <b>discord.gg/kumiro</b> (예시)</li>
+        <li>문의: <b>@KumiGM</b></li>
+        <li>건의/패치노트: 매주 수요일 공개</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>운영정책 요약</h3>
+      <ul class="list">
+        <li>매크로/봇/스크립트 <b>영구정지</b></li>
+        <li>RMT(현금거래) <b>금지</b></li>
+        <li>버그 악용 즉시 제재 (보상 롤백)</li>
+      </ul>
+    </div>
+  </section>
+
+  <footer>
+    © <span id="y"></span> Kumi RO · All rights reserved
+  </footer>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+    const btn = document.getElementById('copyBtn');
+    const input = document.getElementById('fakeLink');
+    btn.addEventListener('click', ()=>{
+      input.select();
+      input.setSelectionRange(0, 99999);
+      try{
+        navigator.clipboard.writeText(input.value);
+        btn.textContent = '복사됨!';
+        setTimeout(()=>btn.textContent='복사', 1500);
+      }catch(e){
+        btn.textContent = '복사 실패';
+        setTimeout(()=>btn.textContent='복사', 1500);
+      }
+    });
+  </script>
+</body>
+</html>
